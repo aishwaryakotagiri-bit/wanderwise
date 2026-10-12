@@ -2,15 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 import { SECTIONS } from './data.js';
 
 // A target counts as "being read" once its top passes this line.
-const READ_LINE = 200;
+const READ_LINE = 160;
 // Where a jumped-to target lands: just below the sticky nav.
-const LAND_OFFSET = 128;
+const LAND_OFFSET = 88;
 
-// Sticky Research / Ideate / Design switcher, with the active section's
-// sub-sections underneath. Highlights where the reader is.
+function Chevron({ open }) {
+  return (
+    <svg className="tabs__chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style={{ transform: open ? 'rotate(180deg)' : 'none' }}>
+      <path d="M3 4.5 L6 7.5 L9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Sticky Research / Ideate / Design tabs. Tapping a tab opens a menu of its
+// sub-sections; picking one jumps there. Highlights where the reader is.
 export default function SectionNav() {
   const [active, setActive] = useState({ section: SECTIONS[0].id, item: null });
-  const subRef = useRef(null);
+  const [open, setOpen] = useState(null);
+  const navRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,37 +40,55 @@ export default function SectionNav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Keep the active sub-section chip in view when the row scrolls sideways.
+  // Close the menu on an outside tap or Escape.
   useEffect(() => {
-    const row = subRef.current;
-    const chip = row && row.querySelector('[aria-current="true"]');
-    if (!chip || row.scrollWidth <= row.clientWidth) return;
-    row.scrollTo({ left: chip.offsetLeft - (row.clientWidth - chip.offsetWidth) / 2, behavior: 'smooth' });
-  }, [active]);
+    if (!open) return;
+    const onDown = e => { if (navRef.current && !navRef.current.contains(e.target)) setOpen(null); };
+    const onKey = e => { if (e.key === 'Escape') setOpen(null); };
+    document.addEventListener('pointerdown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
 
   const go = id => {
+    setOpen(null);
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - LAND_OFFSET, behavior: 'smooth' });
   };
 
-  const current = SECTIONS.find(s => s.id === active.section);
+  const menu = SECTIONS.find(s => s.id === open);
 
   return (
     <div className="tabs-wrap">
-      <nav className="tabs" aria-label="Case study sections">
-        {SECTIONS.map(({ id, label }) => (
-          <button key={id} type="button" aria-current={active.section === id} onClick={() => go(id)}>
-            {label}
-          </button>
-        ))}
-      </nav>
-      <nav className="subtabs" aria-label={`${current.label} sub-sections`} ref={subRef}>
-        {current.items.map(({ id, label }) => (
-          <button key={id} type="button" aria-current={active.item === id} onClick={() => go(id)}>
-            {label}
-          </button>
-        ))}
-      </nav>
+      <div className="tabs-anchor" ref={navRef}>
+        <nav className="tabs" aria-label="Case study sections">
+          {SECTIONS.map(({ id, label }) => (
+            <button
+              key={id}
+              type="button"
+              aria-current={active.section === id}
+              aria-expanded={open === id}
+              aria-controls="section-menu"
+              onClick={() => setOpen(o => (o === id ? null : id))}
+            >
+              {label}
+              <Chevron open={open === id} />
+            </button>
+          ))}
+        </nav>
+        {menu && (
+          <div id="section-menu" className="menu" role="group" aria-label={`${menu.label} topics`}>
+            {menu.items.map(({ id, label }) => (
+              <button key={id} type="button" aria-current={active.item === id} onClick={() => go(id)}>
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

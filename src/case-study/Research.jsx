@@ -86,7 +86,7 @@ export default function Research() {
         <img src="case/tools-collage.png" alt="Screens from the tools travellers use today" />
       </Artefact>
 
-      <div id="takeaways" className="stack-12 measure">
+      <div className="stack-12 measure">
         <h3 className="h4">Takeaways</h3>
         <ol className="list-lg">
           {TAKEAWAYS.map(t => <li key={t}>{t}</li>)}

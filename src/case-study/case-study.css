@@ -91,16 +91,20 @@ li::marker { color: var(--outline-bold); }
 .process ul { margin: 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 20px; color: var(--text-secondary); }
 
 /* ---------- Sticky section nav ---------- */
-.tabs-wrap { position: sticky; top: 16px; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 64px; pointer-events: none; }
+.tabs-wrap { position: sticky; top: 16px; z-index: 20; display: flex; justify-content: center; margin-top: 64px; pointer-events: none; }
+.tabs-anchor { position: relative; pointer-events: auto; }
 .tabs { pointer-events: auto; display: flex; gap: 4px; padding: 4px; border-radius: 24px; background: rgba(241,243,246,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); }
 .tabs button { border: 0; margin: 0; font-family: Rubik, sans-serif; cursor: pointer; height: 40px; padding: 0 20px; border-radius: 20px; background: transparent; box-shadow: none; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--text-secondary); transition: background .15s ease-out; }
 .tabs button[aria-current="true"] { background: var(--surface); box-shadow: var(--shadow-sm); color: var(--primary-bold); }
-.tabs button:focus-visible, .subtabs button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-.subtabs { pointer-events: auto; display: flex; gap: 4px; padding: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; border-radius: 20px; background: rgba(241,243,246,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); }
-.subtabs::-webkit-scrollbar { display: none; }
-.subtabs button { flex: none; border: 0; margin: 0; font-family: Rubik, sans-serif; cursor: pointer; height: 32px; padding: 0 12px; border-radius: 16px; background: transparent; font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-secondary); white-space: nowrap; transition: background .15s ease-out; }
-.subtabs button:hover { color: var(--text-primary); }
-.subtabs button[aria-current="true"] { background: var(--surface); box-shadow: var(--shadow-sm); color: var(--text-primary); }
+.tabs button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.tabs button { display: inline-flex; align-items: center; gap: 6px; }
+.tabs__chevron { flex: none; transition: transform .15s ease-out; }
+.menu { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: max-content; min-width: 100%; max-width: calc(100vw - 32px); display: flex; flex-direction: column; gap: 2px; padding: 6px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-md); }
+.menu button { border: 0; margin: 0; font-family: Rubik, sans-serif; cursor: pointer; min-height: 40px; padding: 8px 14px; border-radius: 14px; background: transparent; text-align: left; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--text-primary); }
+.menu button:hover { background: var(--bg-tertiary); }
+.menu button[aria-current="true"] { background: var(--primary-subtle); color: var(--primary-bold); font-weight: 500; }
+.menu button:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+@media (prefers-reduced-motion: reduce) { .tabs__chevron { transition: none; } }
 
 .section-head { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
 

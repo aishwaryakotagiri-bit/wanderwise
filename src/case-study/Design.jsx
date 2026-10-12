@@ -79,7 +79,7 @@ export default function Design() {
 
       <DesignSystem />
 
-      <div id="approach" className="approach">
+      <div className="approach">
         <span className="approach__eyebrow">THE APPROACH</span>
         <div className="stack-12">
           <span className="approach__title">A trip doesn’t end when the planning does.</span>
@@ -103,7 +103,7 @@ export default function Design() {
         ))}
       </div>
 
-      <div id="learnings" className="duo closing">
+      <div className="duo closing">
         <TextCard title="Assumptions & Callouts">
           <ul>{ASSUMPTIONS.map(a => <li key={a}>{a}</li>)}</ul>
         </TextCard>
