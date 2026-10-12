@@ -80,7 +80,7 @@ li::marker { color: var(--outline-bold); }
 /* ---------- Header ---------- */
 .hero { padding: 96px 0 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
 .hero__logo[hidden] { display: none; }
-.hero__logo { display: block; width: auto; height: 88px; max-width: 100%; margin: 0 0 12px; }
+.hero__logo { display: block; width: auto; height: 120px; max-width: 100%; margin: 0 0 4px; }
 
 /* ---------- Intro ---------- */
 .duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
