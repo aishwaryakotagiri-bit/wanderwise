@@ -1,6 +1,31 @@
+import { useEffect, useRef, useState } from 'react';
 import { ADDED_COLOURS, ASSUMPTIONS, BASE_COLOURS, FLOWS, LEARNINGS, RADII, SPACING, TYPE_SCALE } from './data.js';
 import { PagodaSticker } from './stickers.jsx';
 import { SectionHead, TextCard } from './ui.jsx';
+
+// The prototype pages are laid out for a 430 × 924 window. Scale that window
+// down to the column's width so all three phones fit side by side.
+const FRAME_W = 430;
+const FRAME_H = 924;
+
+function FlowFrame({ src, title }) {
+  const boxRef = useRef(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box) return;
+    const ro = new ResizeObserver(([entry]) => setScale(Math.min(1, entry.contentRect.width / FRAME_W)));
+    ro.observe(box);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div className="flow__frame" ref={boxRef} style={{ height: FRAME_H * scale }}>
+      <iframe src={src} title={title} loading="lazy" style={{ width: FRAME_W, height: FRAME_H, transform: `scale(${scale})` }} />
+    </div>
+  );
+}
 
 function Swatches({ title, note, colours }) {
   return (
@@ -92,10 +117,12 @@ export default function Design() {
       <div className="flows">
         {FLOWS.map(f => (
           <div key={f.href} className="flow">
-            <iframe src={f.href} title={f.title} loading="lazy" />
+            <FlowFrame src={f.href} title={f.title} />
             <div className="flow__meta">
-              {f.bonus && <span className="badge">Bonus flow</span>}
-              <span className="flow__name">{f.title}</span>
+              <span className="flow__name">
+                {f.title}
+                {f.bonus && <span className="badge">Bonus flow</span>}
+              </span>
               <span className="flow__desc">{f.desc}</span>
               <a className="flow__open" href={f.href} target="_blank" rel="noopener noreferrer">Open full screen ↗</a>
             </div>
