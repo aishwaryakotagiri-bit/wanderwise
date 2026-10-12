@@ -1,4 +1,4 @@
-import { PROCESS } from './data.js';
+import { AI_USE, PROCESS } from './data.js';
 import Design from './Design.jsx';
 import Ideate from './Ideate.jsx';
 import Research from './Research.jsx';
@@ -55,6 +55,17 @@ export default function App() {
           <Research />
           <Ideate />
           <Design />
+          <section id="use-of-ai" className="section section--ai">
+            <div className="subsection__intro measure">
+              <h2 className="topic">Use of AI</h2>
+              <p className="body">I used AI across the process and reviewed everything it helped with.</p>
+            </div>
+            <ul className="ai-use">
+              {AI_USE.map(([where, how]) => (
+                <li key={where}><strong>{where}:</strong> {how}</li>
+              ))}
+            </ul>
+          </section>
         </main>
         <footer className="footer">Thank you!</footer>
       </div>

@@ -323,3 +323,13 @@ export const LEARNINGS = [
   'Planning doesn’t stop when the trip starts. The biggest gaps showed up during the trip, which shifted my focus to the day in progress.',
   'Stories say more than answers. A delayed train or a dry waterfall told me more about real needs than any direct question.',
 ];
+
+// [where, how] — copy as written by the author.
+export const AI_USE = [
+  ['Notes', 'cleaning up my early thoughts.'],
+  ['Research', 'quick synthesis, with sources linked.'],
+  ['Interviews', 'voice AI for transcripts and debriefs.'],
+  ['Writing', 'shaping the copy, then editing it myself.'],
+  ['Design', 'refining design system and creating final prototypes.'],
+  ['Case Study', 'Refining the case study visuals, coding the live site and hosting it'],
+];

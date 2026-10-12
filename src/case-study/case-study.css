@@ -231,6 +231,9 @@ li::marker { color: var(--outline-bold); }
 
 .closing ul, .closing ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 26px; color: var(--text-secondary); }
 
+.section--ai { gap: 24px; }
+.ai-use { margin: 0; padding-left: 24px; max-width: 760px; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 30px; color: var(--text-primary); }
+.ai-use strong { font-weight: 500; }
 .footer { padding: 120px 0 0; text-align: center; font-size: 24px; font-weight: 500; line-height: 32px; }
 
 /* Phones get too small to use below this width, so stack the flows. */
