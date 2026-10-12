@@ -48,7 +48,7 @@ export default function App() {
           <img className="hero__logo" src="logo.png" alt="Wanderwise logo" onError={e => { e.currentTarget.hidden = true; }} />
           <span className="eyebrow">CASE STUDY</span>
           <h1 className="title">Wanderwise</h1>
-          <span className="lede">An AI travel companion for first trips abroad</span>
+          <span className="lede">A case study for slice</span>
         </header>
         <main>
           <Intro />

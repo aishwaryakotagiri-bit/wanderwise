@@ -14,8 +14,8 @@ function Chevron({ open }) {
   );
 }
 
-// Sticky Research / Ideate / Design tabs. Tapping a tab opens a menu of its
-// sub-sections; picking one jumps there. Highlights where the reader is.
+// Sticky Research / Ideate / Design tabs. Tapping a tab jumps to that section;
+// the selected tab carries a chevron that opens a menu of its topics.
 export default function SectionNav() {
   const [active, setActive] = useState({ section: SECTIONS[0].id, item: null });
   const [open, setOpen] = useState(null);
@@ -39,6 +39,9 @@ export default function SectionNav() {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // The menu belongs to the selected tab, so close it when the reader scrolls into another section.
+  useEffect(() => { setOpen(null); }, [active.section]);
 
   // Close the menu on an outside tap or Escape.
   useEffect(() => {
@@ -70,12 +73,12 @@ export default function SectionNav() {
               key={id}
               type="button"
               aria-current={active.section === id}
-              aria-expanded={open === id}
-              aria-controls="section-menu"
-              onClick={() => setOpen(o => (o === id ? null : id))}
+              aria-expanded={active.section === id ? open === id : undefined}
+              aria-controls={active.section === id ? 'section-menu' : undefined}
+              onClick={() => (active.section === id ? setOpen(o => (o === id ? null : id)) : go(id))}
             >
               {label}
-              <Chevron open={open === id} />
+              {active.section === id && <Chevron open={open === id} />}
             </button>
           ))}
         </nav>
