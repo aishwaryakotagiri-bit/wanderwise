@@ -46,7 +46,6 @@ li::marker { color: var(--outline-bold); }
 .measure { max-width: 880px; }
 
 /* ---------- Type ---------- */
-.eyebrow { font-size: 14px; font-weight: 500; line-height: 20px; color: var(--primary-bold); letter-spacing: .08em; }
 .title { margin: 0; font-size: 56px; font-weight: 500; line-height: 64px; letter-spacing: -.02em; }
 .lede { font-size: 18px; font-weight: 400; line-height: 28px; color: var(--text-secondary); }
 .h2 { margin: 0; font-size: 32px; font-weight: 500; line-height: 40px; letter-spacing: -.01em; }
