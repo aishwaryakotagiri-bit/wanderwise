@@ -72,14 +72,14 @@ export default function Design() {
     <section id="design" className="section">
       <SectionHead title="Design" sub="From the system to the final flows." sticker={<PagodaSticker />} />
 
-      <div className="stack-8">
+      <div id="design-system" className="stack-8">
         <h3 className="h3">Design system</h3>
         <span className="sub">Built on the given base system. Only the additions for maps, illustration and stamps are new.</span>
       </div>
 
       <DesignSystem />
 
-      <div className="approach">
+      <div id="approach" className="approach">
         <span className="approach__eyebrow">THE APPROACH</span>
         <div className="stack-12">
           <span className="approach__title">A trip doesn’t end when the planning does.</span>
@@ -87,7 +87,7 @@ export default function Design() {
         </div>
       </div>
 
-      <h3 className="h3">Final flows</h3>
+      <h3 id="final-flows" className="h3">Final flows</h3>
 
       <div className="flows">
         {FLOWS.map(f => (
@@ -97,13 +97,13 @@ export default function Design() {
               {f.bonus && <span className="badge">Bonus flow</span>}
               <span className="flow__name">{f.title}</span>
               <span className="flow__desc">{f.desc}</span>
-              <a className="flow__open" href={f.href}>Open full screen ↗</a>
+              <a className="flow__open" href={f.href} target="_blank" rel="noopener noreferrer">Open full screen ↗</a>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="duo closing">
+      <div id="learnings" className="duo closing">
         <TextCard title="Assumptions & Callouts">
           <ul>{ASSUMPTIONS.map(a => <li key={a}>{a}</li>)}</ul>
         </TextCard>

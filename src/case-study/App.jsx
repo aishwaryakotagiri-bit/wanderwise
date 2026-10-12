@@ -3,7 +3,7 @@ import Design from './Design.jsx';
 import Ideate from './Ideate.jsx';
 import Research from './Research.jsx';
 import SectionNav from './SectionNav.jsx';
-import { Logo, StickerDefs } from './stickers.jsx';
+import { StickerDefs } from './stickers.jsx';
 import { TextCard } from './ui.jsx';
 
 function Intro() {
@@ -45,7 +45,7 @@ export default function App() {
       <StickerDefs />
       <div className="page">
         <header className="hero">
-          <Logo />
+          <img className="hero__logo" src="logo.svg" alt="Wanderwise logo" onError={e => { e.currentTarget.hidden = true; }} />
           <span className="eyebrow">CASE STUDY</span>
           <h1 className="title">Wanderwise</h1>
           <span className="lede">An AI travel companion for first trips abroad</span>

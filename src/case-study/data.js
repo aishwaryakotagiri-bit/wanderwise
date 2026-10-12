@@ -14,10 +14,39 @@ export const PROCESS = [
   { n: '03', name: 'Design', items: ['Design System', 'Final Flows', 'Learnings'] },
 ];
 
+// Sticky navigation: each section and the sub-sections a reader can jump to.
 export const SECTIONS = [
-  { id: 'research', label: 'Research' },
-  { id: 'ideate', label: 'Ideate' },
-  { id: 'design', label: 'Design' },
+  {
+    id: 'research', label: 'Research',
+    items: [
+      { id: 'desk-research', label: 'Desk research' },
+      { id: 'tools', label: 'Tools today' },
+      { id: 'takeaways', label: 'Takeaways' },
+      { id: 'interviews', label: 'Interviews' },
+      { id: 'insights', label: 'Insights' },
+      { id: 'personas', label: 'Proto personas' },
+    ],
+  },
+  {
+    id: 'ideate', label: 'Ideate',
+    items: [
+      { id: 'how-might-we', label: 'How might we' },
+      { id: 'journey-map', label: 'Journey map' },
+      { id: 'value-proposition', label: 'Value proposition' },
+      { id: 'voice-and-tone', label: 'Voice & tone' },
+      { id: 'feature-benefit', label: 'Feature-benefit' },
+      { id: 'prioritisation', label: 'Prioritisation' },
+    ],
+  },
+  {
+    id: 'design', label: 'Design',
+    items: [
+      { id: 'design-system', label: 'Design system' },
+      { id: 'approach', label: 'Approach' },
+      { id: 'final-flows', label: 'Final flows' },
+      { id: 'learnings', label: 'Learnings' },
+    ],
+  },
 ];
 
 export const STATS = [

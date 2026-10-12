@@ -66,7 +66,7 @@ export default function Research() {
     <section id="research" className="section section--research">
       <SectionHead title="Research" sub="Understanding how people plan and live their trips today." sticker={<PlaneSticker />} />
 
-      <p className="body">
+      <p id="desk-research" className="body">
         To establish a baseline understanding of how people travel today, I started off with some <strong>secondary desk research</strong> about travel from India: who is travelling, how they plan, how they spend, and where they look for help.
       </p>
 
@@ -74,7 +74,7 @@ export default function Research() {
         {STATS.map(s => <div key={s} className="card stat">{s}</div>)}
       </div>
 
-      <p className="body">
+      <p id="tools" className="body">
         I looked at how people plan and live their trips today. Most people use a mix of five kinds of tools and sources. Then, I <strong>weighed the pros and cons</strong> of each method to see where the process could be improved.
       </p>
 
@@ -86,7 +86,7 @@ export default function Research() {
         <img src="case/tools-collage.png" alt="Screens from the tools travellers use today" />
       </Artefact>
 
-      <div className="stack-12 measure">
+      <div id="takeaways" className="stack-12 measure">
         <h3 className="h4">Takeaways</h3>
         <ol className="list-lg">
           {TAKEAWAYS.map(t => <li key={t}>{t}</li>)}
@@ -95,7 +95,7 @@ export default function Research() {
 
       <p className="body">People use many tools to plan a trip, and they still have to put it all together themselves, especially once the trip begins.</p>
 
-      <p className="body">
+      <p id="interviews" className="body">
         To develop a more well-rounded solution, I started by designing a user questionnaire and conducting <strong>three user interviews</strong>. These interviews involved individuals who had experience in travelling in India and abroad, both in solo and group settings.
       </p>
 
@@ -116,7 +116,7 @@ export default function Research() {
         </div>
       </div>
 
-      <p className="body">After the user interviews, the <strong>key insights and pain points</strong> uncovered are as follows:</p>
+      <p id="insights" className="body">After the user interviews, the <strong>key insights and pain points</strong> uncovered are as follows:</p>
 
       <Artefact title="Key insights and pain points">
         <div className="cols-260">
@@ -132,7 +132,7 @@ export default function Research() {
         </div>
       </Artefact>
 
-      <p className="body">
+      <p id="personas" className="body">
         Following the research, I found that I lacked sufficient information to create personas. To avoid being misled by incomplete personas while staying anchored to the real people I spoke to, I focused on developing proto personas to gain a better understanding of the users we are designing for.
       </p>
 
