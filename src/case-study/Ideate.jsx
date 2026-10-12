@@ -1,6 +1,6 @@
 import { CUSTOMER_PROFILE, EMOTIONS, JOURNEY_GOALS, JOURNEY_ROWS, PHASES, PRIORITISATION, THEMES, VALUE_MAP, COLORS } from './data.js';
 import { MatchaSticker } from './stickers.jsx';
-import { Artefact, Chips, Dot, List, Panel, SectionHead } from './ui.jsx';
+import { Artefact, Chips, Dot, List, Panel, SectionHead, Subsection } from './ui.jsx';
 
 function JourneyMap() {
   const x = i => ((i + 0.5) / PHASES.length) * 100;
@@ -49,14 +49,14 @@ function ValueProposition() {
   const grid = blocks => (
     <div className="vp__grid">
       {blocks.map(b => (
-        <Panel key={b.label} label={b.label} color={b.color} span={b.span}>
+        <Panel key={b.label} label={b.label} span={b.span}>
           <List items={b.items} />
         </Panel>
       ))}
     </div>
   );
   return (
-    <Artefact title="Value proposition: Aditi">
+    <Artefact>
       <div className="vp">
         <div className="stack-12">
           <span className="vp__title">Value map</span>
@@ -73,17 +73,17 @@ function ValueProposition() {
 
 function VoiceAndTone() {
   return (
-    <Artefact title="Voice and tone">
+    <Artefact>
       <div className="voice">
         <div className="stack-8">
           <span className="voice__stage">Understand</span>
-          <Panel label="How users spoke about this" color={COLORS.primary}>
+          <Panel label="How users spoke about this">
             <List items={[
               'Users talk about travel with excitement, mixed with nerves about going alone and the unknown.',
               'They trust honest, local voices and want the real picture: "you see a beautiful waterfall online, but you go there and it\'s dry."',
             ]} />
           </Panel>
-          <Panel label="Sharing user evidence" color={COLORS.primary}>
+          <Panel label="Sharing user evidence">
             <List items={[
               'Problem: planning and living a trip across scattered tools, with no help when plans change.',
               'Context: travellers want both a plan and the freedom to change it.',
@@ -91,7 +91,7 @@ function VoiceAndTone() {
             ]} />
           </Panel>
           <span className="voice__stage voice__stage--gap">Evaluate</span>
-          <Panel label="Success criteria" color={COLORS.info}>
+          <Panel label="Success criteria">
             <List items={[
               'Clear, calm guidance at every step of the trip.',
               'Honest information: what to expect, and what a change costs.',
@@ -102,14 +102,14 @@ function VoiceAndTone() {
 
         <div className="stack-8">
           <span className="voice__stage">Define</span>
-          <Panel label="Personality traits" color={COLORS.success}>
+          <Panel label="Personality traits">
             <Chips items={['Calm', 'Reassuring', 'Honest', 'Warm', 'Curious', 'Lightly playful']} />
             <span className="voice__aside">Like a friend who's been there before.</span>
           </Panel>
-          <Panel label="How the product is NOT!" color={COLORS.error}>
+          <Panel label="How the product is NOT!">
             <Chips items={['Pushy or salesy', 'Alarming or dramatic', 'Robotic or generic', 'Preachy about her choices']} />
           </Panel>
-          <Panel label="Dialogue and practice" color={COLORS.success}>
+          <Panel label="Dialogue and practice">
             <p className="voice__line">Aditi (User): "My train to Kyoto is running 40 minutes late. Will I miss my tea ceremony?"</p>
             <p className="voice__line">App: "You'll still make it. The tea house is a 15-minute walk from Kyoto Station, so you'll have about 20 minutes to spare. Should I move lunch to after the ceremony so you're not rushing?"</p>
           </Panel>
@@ -117,7 +117,7 @@ function VoiceAndTone() {
 
         <div className="stack-8">
           <span className="voice__stage" aria-hidden="true">&nbsp;</span>
-          <Panel label="Experimentation with tone" color={COLORS.success}>
+          <Panel label="Experimentation with tone">
             <List items={[
               'Celebrating: "Day 1, done! You explored all of Asakusa."',
               'Reassuring: "First night in Tokyo? Here\'s your way from the airport to the hotel, step by step."',
@@ -164,38 +164,58 @@ function Prioritisation() {
 
 export default function Ideate() {
   return (
-    <section id="ideate" className="section">
+    <section id="ideate" className="section section--topics">
       <SectionHead title="Ideate" sub="Turning insights into the right problems to solve." sticker={<MatchaSticker />} />
 
-      <p id="how-might-we" className="body">With a clear picture of what travellers go through, I turned the key insights into How Might We questions, so I could start shaping ideas around the right problems.</p>
+      <Subsection
+        id="how-might-we"
+        title="How Might We"
+        intro={<p className="body">With a clear picture of what travellers go through, I turned the key insights into How Might We questions, so I could start shaping ideas around the right problems.</p>}
+      >
+        <p className="hmw">How might we enable travellers to plan with confidence, enjoy every day, and adapt with ease?</p>
+      </Subsection>
 
-      <div className="hmw">How might we enable travellers to plan with confidence, enjoy every day, and adapt with ease?</div>
+      <Subsection
+        id="journey-map"
+        title="Journey Map"
+        intro={<p className="body">To see where these moments happen, I mapped Aditi’s journey from the first idea to the trip home: what she does, thinks and feels at each step, and where we can help.</p>}
+      >
+        <JourneyMap />
+      </Subsection>
 
-      <p id="journey-map" className="body">To see where these moments happen, I mapped Aditi’s journey from the first idea to the trip home: what she does, thinks and feels at each step, and where we can help.</p>
+      <Subsection
+        id="value-proposition"
+        title="Value Proposition"
+        intro={<p className="body">To make sure what we build matches what travellers need, I mapped Aditi’s jobs, pains and gains against what the product could offer. Every pain has something to relieve it, and every gain has something to create it.</p>}
+      >
+        <ValueProposition />
+      </Subsection>
 
-      <JourneyMap />
+      <Subsection
+        id="voice-and-tone"
+        title="Voice & Tone"
+        intro={<p className="body">Understanding the emotional ups and downs of travel, especially alone, I believe UX copy plays a unique role here. Through a <strong>voice and tone exercise,</strong> I wanted to make sure the product sounds like a friend who’s been there: calm when things go wrong, honest about what to expect, and excited with travellers when things go right.</p>}
+      >
+        <VoiceAndTone />
+      </Subsection>
 
-      <p id="value-proposition" className="body">To make sure what we build matches what travellers need, I mapped Aditi’s jobs, pains and gains against what the product could offer. Every pain has something to relieve it, and every gain has something to create it.</p>
+      <Subsection
+        id="feature-benefit"
+        title="Feature-Benefit Analysis"
+        intro={<p className="body">With a direction in place, I listed every feature idea across before, during and after the trip, drawn from my early notes and the research. I then ran a quick <strong>feature-benefit analysis</strong> to check that each one clearly helps the traveller.</p>}
+      >
+        <Artefact>
+          <img className="outlined" src="case/feature-benefit.png" alt="Feature-benefit table" />
+        </Artefact>
+      </Subsection>
 
-      <ValueProposition />
-
-      <p id="voice-and-tone" className="body">
-        Understanding the emotional ups and downs of travel, especially alone, I believe UX copy plays a unique role here. Through a <strong>voice and tone exercise,</strong> I wanted to make sure the product sounds like a friend who’s been there: calm when things go wrong, honest about what to expect, and excited with travellers when things go right.
-      </p>
-
-      <VoiceAndTone />
-
-      <p id="feature-benefit" className="body">
-        With a direction in place, I listed every feature idea across before, during and after the trip, drawn from my early notes and the research. I then ran a quick <strong>feature-benefit analysis</strong> to check that each one clearly helps the traveller.
-      </p>
-
-      <Artefact title="Feature-benefit analysis">
-        <img className="outlined" src="case/feature-benefit.png" alt="Feature-benefit table" />
-      </Artefact>
-
-      <p id="prioritisation" className="body">Since planning and booking tools already exist, I chose to focus on the during part. I mapped the during-trip features on value against complexity, and picked the two flows to design: the trip view (Next, Today, Trip) and the place details page.</p>
-
-      <Prioritisation />
+      <Subsection
+        id="prioritisation"
+        title="Feature Prioritisation"
+        intro={<p className="body">Since planning and booking tools already exist, I chose to focus on the during part. I mapped the during-trip features on value against complexity, and picked the two flows to design: the trip view (Next, Today, Trip) and the place details page.</p>}
+      >
+        <Prioritisation />
+      </Subsection>
     </section>
   );
 }

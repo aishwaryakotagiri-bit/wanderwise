@@ -41,9 +41,22 @@ export function Chips({ items }) {
 export function Artefact({ title, wide, children }) {
   return (
     <figure className={`artefact ${wide ? 'artefact--wide' : ''}`}>
-      <figcaption>{title}</figcaption>
+      {title && <figcaption>{title}</figcaption>}
       {children}
     </figure>
+  );
+}
+
+// One topic inside a section: a heading, its intro paragraph, then the evidence.
+export function Subsection({ id, title, intro, children }) {
+  return (
+    <div id={id} className="subsection">
+      <div className="subsection__intro">
+        <h3 className="topic">{title}</h3>
+        {intro}
+      </div>
+      {children}
+    </div>
   );
 }
 
